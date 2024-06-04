@@ -7,4 +7,8 @@ class Admin::PostsController < ApplicationController
 
   def destroy
   end
+  
+  def index
+    
+  end
 end

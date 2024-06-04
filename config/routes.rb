@@ -14,14 +14,13 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to:'homes#top'
-    get '/about' => 'homes#about'
     get 'users/:user_id/posts' => 'users#index'
     get 'users/:user_id/follower' => 'users#follower'
     get 'users/:user_id/followed' => 'users#followed'
     get 'users/comfirm' => 'users#comfirm'
     patch 'users/withdraw' => 'users#withdraw'
     resources :users , only: [:edit, :show, :update]
-    resources :posts , only: [:new, :show, :create, :edit, :update, :destroy] do
+    resources :posts do
       resources :comments , only: [:new, :create, :edit, :update, :destroy]
       resource :favorites , only: [:index, :create, :destroy]
     end
@@ -35,10 +34,8 @@ Rails.application.routes.draw do
     # 各ユーザーの投稿一覧
     get '/admin/users/:users_id/posts' => 'users#list'
     resources :users , only: [:edit, :index, :show, :update]
-    resources :posts , only: [:show, :update, :destroy]
+    resources :posts , only: [:show, :update, :destroy, :index]
     resources :comment , only: [:destroy]
     get 'searches' => 'searches#search'
-    
-    
   end
 end
