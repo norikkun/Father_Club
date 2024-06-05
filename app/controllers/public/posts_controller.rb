@@ -1,11 +1,24 @@
 class Public::PostsController < ApplicationController
   def new
+    @post = Post.new
+  end
+  
+  def index
+    @posts = Post.all
   end
 
   def show
+    @post = post.find(params[:id])
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = "保存に失敗しました"
+      render :new
+    end
   end
 
   def edit
@@ -17,3 +30,9 @@ class Public::PostsController < ApplicationController
   def destroy
   end
 end
+
+private
+  
+  def post_params
+    params.require(:post).permit(:title, :body, :post_image)
+  end

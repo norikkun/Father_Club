@@ -1,1 +1,15 @@
-<h1>投稿一覧画面</h1>
+<div class="container text-center">
+  <% @posts.each do |post| %>
+  <div>
+    <p>タイトル</p>
+    <%= link_to post_path(post) do %>
+      <%= post.title %>
+    <% end %>
+  </div>
+  <div>
+    <p>投稿内容</p>
+    <%= post.body %>
+  </div>
+  
+  <% end %>
+</div>
