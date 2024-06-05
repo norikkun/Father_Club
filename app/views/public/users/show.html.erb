@@ -1,2 +1,28 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2 class="col-ayto mx-auto px-4 mb-5">マイページ</h2>
+  </div>
+  
+  <div class="row">
+    <div class="col-3"></div>
+    <table class="table table-bordered col-6">
+      <tbody>
+        <tr>
+          <td class="col-2", style="background-color: #B3ECFA;">ニックネーム</td>
+          <td class="col-4"><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td style="background-color: #B3ECFA;">メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="row my-3">
+    <%= link_to "編集する", edit_user_path(@user), class:"btn btn-success col-auto mx-auto" %>
+  </div>
+  <div class="row my-3">
+  <%= link_to "ユーザーの投稿一覧", user_posts_path(@user), class: "btn btn-info col-auto mx-auto" %>
+  </div>
+</div>

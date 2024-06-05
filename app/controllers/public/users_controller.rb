@@ -2,10 +2,11 @@ class Public::UsersController < ApplicationController
   def edit
   end
 
-  def index
+  def posts
   end
 
   def show
+    @user = current_user
   end
 
   def update

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to:'homes#top'
-    get 'users/:user_id/posts' => 'users#index'
+    get '/users/:user_id/posts', to: 'users#posts', as: 'user_posts'
     get 'users/:user_id/follower' => 'users#follower'
     get 'users/:user_id/followed' => 'users#followed'
     get 'users/comfirm' => 'users#comfirm'
