@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get '/users/:user_id/posts', to: 'users#posts', as: 'user_posts'
     get 'users/:user_id/follower' => 'users#follower'
     get 'users/:user_id/followed' => 'users#followed'
-    get 'users/comfirm' => 'users#comfirm'
+    get 'users/confirm' => 'users#confirm'
     patch 'users/withdraw' => 'users#withdraw'
     resources :users , only: [:edit, :show, :update]
     resources :posts do

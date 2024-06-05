@@ -1,0 +1,13 @@
+<% if post.post_image.attached? %>
+  <%= image_tag post.post_image, size: "200x200" %>
+<% end %>
+<div>
+  <p>タイトル</p>
+  <%= link_to post_path(post) do %>
+    <%= post.title %>
+      <% end %>
+</div>
+<div>
+  <p>投稿内容</p>
+  <%= post.body %>
+</div>

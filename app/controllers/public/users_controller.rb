@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   def edit
+    @user = User.find(params[:id])
   end
 # ユーザーの投稿一覧
   def posts
@@ -20,7 +21,7 @@ class Public::UsersController < ApplicationController
   def followed
   end
 
-  def connfirm
+  def confirm
   end
 
   def withdraw
