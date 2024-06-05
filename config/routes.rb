@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'homes#top'
     # 各ユーザーの投稿一覧
-    get '/admin/users/:users_id/posts' => 'users#list'
+    get '/admin/users/:users_id/posts' => 'users#posts'
     resources :users , only: [:edit, :index, :show, :update]
     resources :posts , only: [:show, :update, :destroy, :index]
     resources :comment , only: [:destroy]

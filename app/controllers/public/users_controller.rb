@@ -1,8 +1,10 @@
 class Public::UsersController < ApplicationController
   def edit
   end
-
+# ユーザーの投稿一覧
   def posts
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def show
