@@ -4,11 +4,11 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.includes(:user).order(created_at: :desc)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:user).find(params[:id])
   end
 
   def create
@@ -23,12 +23,24 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "投稿を更新しました"
+      redirect_to post_path(@post)
+    else
+      flash[:notice] = "投稿の更新に失敗しました"
+      redirect_to request.referer
+    end
   end
 
   def destroy
+    post = current_user.posts.find(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
 end
 

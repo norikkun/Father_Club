@@ -33,6 +33,13 @@
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
             <% elsif user_signed_in? %>
+            <li>
+              <% if current_user.user_image.attached? %>
+              <%= image_tag current_user.user_image, size: "50x50", class: "rounded-circle" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "50x50", class: "rounded-circle" %>
+              <% end %>
+            </li>
             <li class="nav-link text-white">
               ようこそ、<%= current_user.name %>さん！
             </li>

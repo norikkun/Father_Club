@@ -10,7 +10,7 @@
       <%= f.label :ニックネーム %><br />
       <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "たなかっち", size: "30"  %>
     </div>
-  
+  <%= flash[:notice] %>
     <div class="my-3">
       <%= f.label :メールアドレス %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "〇〇〇＠〇〇〇", size: "30" %>
