@@ -1,16 +1,80 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Father</title>
+    <title>Father_Club</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column vh-100", style="background-color: #EEFFFF;">
+    <header class="shadow-sm fixed-top", style="background-color: #B3ECFA;" >
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <%= link_to root_path do %>
+            <%= image_tag "header", size: "180x70"%>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+            <li>
+              <%= link_to '投稿一覧', admin_posts_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+            <% elsif user_signed_in? %>
+            <li>
+              <% if current_user.user_image.attached? %>
+              <%= image_tag current_user.user_image, size: "50x50", class: "rounded-circle" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "50x50", class: "rounded-circle" %>
+              <% end %>
+            </li>
+            <li class="nav-link text-white">
+              ようこそ、<%= current_user.name %>さん！
+            </li>
+            <li>
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to '投稿一覧', posts_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to '新規投稿', new_post_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to '投稿一覧', posts_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-white' %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto", style="margin-top: 120px;">
+      <%= yield %>
+    </main>
+    <fotter class="container-fluid text-dark container-fluid", style="background-color: #B3ECFA;">
+      <div class="row">
+        <p class="col-auto mx-auto py-1">©Father_Club</p>
+      </div>
+    </fotter>
   </body>
 </html>

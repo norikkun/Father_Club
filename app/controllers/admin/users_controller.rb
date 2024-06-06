@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   end
   
   # 各ユーザーの投稿一覧
-  def lists
+  def posts
   end
 
   def show
