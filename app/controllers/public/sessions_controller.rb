@@ -24,7 +24,7 @@ class Public::SessionsController < Devise::SessionsController
     if !user.is_active
     # アカウントが有効化されていない場合の処理を記述
     # 例えば、エラーメッセージを表示したり、特定のページにリダイレクトさせたりすることができます
-    flash[:alert] = "アカウントが有効化されていません。もう一度新規登録を行ってください"
+    flash[:notice] = "アカウントが有効化されていません。もう一度新規登録を行ってください"
     redirect_to new_user_registration_path and return
     end
   end

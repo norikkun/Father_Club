@@ -15,10 +15,11 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      flash[:notice] = "投稿に成功しました"
       redirect_to post_path(@post)
     else
-      flash.now[:alert] = "保存に失敗しました"
-      render :new
+      flash[:notice] = "投稿に失敗しました"
+      redirect_to request.referer
     end
   end
 
