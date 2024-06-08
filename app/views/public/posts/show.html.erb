@@ -9,18 +9,20 @@
       <% end %>
     <% end %>
     <%= @post.user.name %>
+    
   </div>
-  
-  <% if @post.post_image.attached? %>
-    <%= image_tag @post.post_image, size: "200x200" %>
-  <% end %>
-  <div>
-    <p>タイトル</p>
-      <%= @post.title %>
+  <div class="mb-3">
+    <% if @post.post_image.attached? %>
+      <%= image_tag @post.post_image, style: "max-width: 300px; height: auto;" %>
+    <% end %>
   </div>
   <div>
-    <p>投稿内容</p>
-    <%= @post.body %>
+    <h4>タイトル</h4>
+    <p><%= @post.title %></p>
+  </div>
+  <div>
+    <h4>投稿内容</h4>
+    <p class="body"><%= @post.body %></p>
   </div>
   
   <div class="row">

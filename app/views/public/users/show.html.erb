@@ -10,15 +10,14 @@
 
   <div>
     <h2 class="col-auto mx-auto mb-3"><%= @user.name %></h2>
-    <h3>紹介文</h3>
-    <h4 class="mb-5"><%= @user.introduction%></h4>
+    <p class="introduction mb-3"><%= @user.introduction%></p>
     <h3>メールアドレス</h3>
-    <h4 class="mb-5"><%= @user.email %></h4>
+    <h4 class="mb-3"><%= @user.email %></h4>
   </div>
   
   <div>
     <% if @user == current_user %>
-      <%= link_to "編集する", edit_user_path(@user), class:"btn btn-success mb-5" %>
+      <%= link_to "編集する", edit_user_path(@user), class:"btn btn-success mb-3" %>
     <% end %>
   </div>
   <div>

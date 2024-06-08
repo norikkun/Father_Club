@@ -1,25 +1,20 @@
 <div>
   <%= link_to user_path(post.user) do %>
     <% if post.user.user_image.attached? %>
-        <%= image_tag post.user.user_image, size: "60x60", class: "rounded-circle col-auto mx-auto mb-3" %>
+        <%= image_tag post.user.user_image, size: "40x40", class: "rounded-circle col-auto mx-auto mb-2" %>
       <% else %>
-        <%= image_tag 'no_image.jpg', size: "60x60", class: "rounded-circle col-auto mx-auto mb-3" %>
+        <%= image_tag 'no_image.jpg', size: "40x40", class: "rounded-circle col-auto mx-auto mb-2" %>
     <% end %>
   <% end %>
   <%= post.user.name %>
 </div>
-
-<% if post.post_image.attached? %>
-  <%= image_tag post.post_image, size: "200x200" %>
-<% end %>
-<div>
-  <p>タイトル</p>
+<div class="mb-2">
+  <% if post.post_image.attached? %>
+    <%= image_tag post.post_image, style: "max-width: 300px; height: auto;" %>
+  <% end %>
+</div>
+<div class="mb-5">
   <%= link_to post_path(post) do %>
     <%= post.title %>
-      <% end %>
-</div>
-
-<div>
-  <p>投稿内容</p>
-  <%= post.body %>
+  <% end %>
 </div>
