@@ -18,19 +18,25 @@ Turbolinks.start()
 ActiveStorage.start()
 
 // ヘッダーのスクロール動作
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const header = document.querySelector('header');
-  let prevY = window.scrollY; 
+  let prevY = window.scrollY;
 
-  window.addEventListener('scroll', () => {
+  function handleScroll() {
     const currentY = window.scrollY;
-    if (currentY < prevY) { 
-      header.classList.remove('hidden'); 
-    } else { 
+    if (currentY < prevY) {
+      header.classList.remove('hidden');
+    } else {
       if (currentY > 0) {
-        header.classList.add('hidden'); 
+        header.classList.add('hidden');
       }
     }
-    prevY = currentY; 
+    prevY = currentY;
+  }
+
+  window.addEventListener('scroll', handleScroll);
+
+  document.addEventListener('turbolinks:before-render', () => {
+    window.removeEventListener('scroll', handleScroll);
   });
 });

@@ -23,17 +23,11 @@ header.hidden {
 
 @media (max-width: 437px) {
   .col.d-flex.justify-content-end {
-    font-size: 11px; /* 437px未満の場合のフォントサイズ */
+    font-size: 12px; /* 437px未満の場合のフォントサイズ */
     padding-right: 0px;
   }
 }
 
-@media (max-width: 420px) {
-  .col.d-flex.justify-content-end {
-    font-size: 9px; /* 420px未満の場合のフォントサイズ */
-    padding-right: 0px;
-  }
-}
 /*showページの改行機能*/
 .introduction, .body {
   white-space: pre-wrap;

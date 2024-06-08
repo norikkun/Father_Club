@@ -20,11 +20,7 @@
         <% elsif user_signed_in? %>
           <div class="col">
             <%= link_to user_path(current_user.id) do %>
-              <% if current_user.user_image.attached? %>
-                <%= image_tag current_user.user_image, size: "50x50", class: "rounded-circle img-fluid ml-4" %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', size: "50x50", class: "rounded-circle img-fluid ml-4" %>
-              <% end %>
+              <%= image_tag current_user.get_user_image(50, 50), class: "rounded-circle d-block mx-3 mx-3" %>
             <% end %>
           </div>
           <div class="col-6 d-flex justify-content-center">
@@ -33,7 +29,7 @@
             <% end %>
           </div>
           <div class="col d-flex justify-content-end">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-white" %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-info" %>
             <div class="col-1"></div>
           </div>
         <% else %>
@@ -44,7 +40,7 @@
             <% end %>
           </div>
           <div class="col d-flex justify-content-end">
-            <%= link_to "ログイン", new_user_session_path, class: "text-white" %>
+            <%= link_to "ログイン", new_user_session_path, class: "text-info" %>
             <div class="col-1"></div>
           </div>
         <% end %>

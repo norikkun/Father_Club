@@ -1,10 +1,6 @@
 <div>
   <%= link_to user_path(post.user) do %>
-    <% if post.user.user_image.attached? %>
-        <%= image_tag post.user.user_image, size: "40x40", class: "rounded-circle col-auto mx-auto mb-2" %>
-      <% else %>
-        <%= image_tag 'no_image.jpg', size: "40x40", class: "rounded-circle col-auto mx-auto mb-2" %>
-    <% end %>
+    <%= image_tag post.user.get_user_image(50, 50), class: "rounded-circle mx-auto mb-3" %>
   <% end %>
   <%= post.user.name %>
 </div>
