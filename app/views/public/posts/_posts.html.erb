@@ -4,13 +4,13 @@
   <% end %>
   <%= post.user.name %>
 </div>
-<div class="mb-2">
-  <% if post.post_image.attached? %>
-    <%= image_tag post.post_image, style: "max-width: 300px; height: auto;" %>
-  <% end %>
-</div>
-<div class="mb-5">
-  <%= link_to post_path(post) do %>
-    <%= post.title %>
-  <% end %>
-</div>
+<%= link_to post_path(post) do %>
+  <div class="mb-2">
+    <% if post.post_image.attached? %>
+      <%= image_tag post.post_image, style: "max-width: 300px; height: auto;" %>
+    <% end %>
+  </div>
+  <div class="mb-5">
+      <%= post.title %>
+  </div>
+<% end %>
