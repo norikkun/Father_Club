@@ -16,15 +16,13 @@ header.hidden {
 
 @media (max-width: 550px) {
   .col.d-flex.justify-content-end {
-    font-size: 12px; /* 550px未満の場合のフォントサイズ */
-    padding-right: 0px;
+    font-size: auto; /* 550px未満の場合のフォントサイズ */
   }
 }
 
 @media (max-width: 437px) {
   .col.d-flex.justify-content-end {
     font-size: 12px; /* 437px未満の場合のフォントサイズ */
-    padding-right: 0px;
   }
 }
 

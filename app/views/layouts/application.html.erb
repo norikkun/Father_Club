@@ -17,30 +17,25 @@
       <div class="row d-flex justify-content-between align-items-center">
         <% if admin_signed_in? %>
         
-        <% elsif user_signed_in? %>
+        <% else %>
           <div class="col">
-            <%= link_to user_path(current_user.id) do %>
-              <%= image_tag current_user.get_user_image(50, 50), class: "rounded-circle d-block ml-3" %>
+            <% if user_signed_in? %>
+              <%= link_to user_path(current_user.id) do %>
+                <%= image_tag current_user.get_user_image(50, 50), class: "rounded-circle d-block ml-3" %>
+              <% end %>
             <% end %>
           </div>
-          <div class="col-6 d-flex justify-content-center">
+          <div class="col-5 d-flex justify-content-center">
             <%= link_to root_path do %>
               <%= image_tag "header.png", class: "col-auto mx-auto img-fluid"%>
             <% end %>
           </div>
-          <div class="col d-flex justify-content-end">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-info" %>
-            <div class="col-1"></div>
-          </div>
-        <% else %>
-        <div class="col"></div>
-          <div class="col-6 d-flex justify-content-center">
-            <%= link_to root_path do %>
-              <%= image_tag "header.png", class: "mx-auto img-fluid"%>
+          <div class="col d-flex justify-content-end", style="padding-right: 0px; font-size: clamp(13px, 3vw, 20px);;">
+            <% if user_signed_in? %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-info" %>
+            <% else %>
+              <%= link_to "ログイン", new_user_session_path, class: "text-info" %>
             <% end %>
-          </div>
-          <div class="col d-flex justify-content-end">
-            <%= link_to "ログイン", new_user_session_path, class: "text-info" %>
             <div class="col-1"></div>
           </div>
         <% end %>

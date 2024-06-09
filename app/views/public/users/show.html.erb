@@ -14,12 +14,12 @@
   
   <div>
     <% if @user == current_user %>
-      <%= link_to "編集する", edit_user_path(@user), class:"btn btn-success mb-3" %>
+      <%= link_to "編集する", edit_user_path(@user), class:"btn btn-success mb-5" %>
     <% end %>
   </div>
   <div>
-    <%= link_to user_posts_path(@user), class: "btn btn-info" do %>
-    <%= @user.name %>の投稿一覧
-    <% end %>
+    <% @posts.each do |post| %>
+    <%= render '/public/posts/posts', post: post%>
+  <% end %>
   </div>
 </div>

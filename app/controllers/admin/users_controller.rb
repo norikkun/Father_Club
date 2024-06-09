@@ -5,10 +5,6 @@ class Admin::UsersController < ApplicationController
 
   def index
   end
-  
-  # 各ユーザーの投稿一覧
-  def posts
-  end
 
   def show
   end

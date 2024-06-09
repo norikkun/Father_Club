@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to:'homes#top'
-    get '/users/:user_id/posts', to: 'users#posts', as: 'user_posts'
     get 'users/:user_id/follower' => 'users#follower'
     get 'users/:user_id/followed' => 'users#followed'
     get 'users/confirm' => 'users#confirm'
@@ -31,8 +30,6 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/' => 'homes#top'
-    # 各ユーザーの投稿一覧
-    get '/admin/users/:users_id/posts' => 'users#posts'
     resources :users , only: [:edit, :index, :show, :update]
     resources :posts , only: [:show, :update, :destroy, :index]
     resources :comment , only: [:destroy]
