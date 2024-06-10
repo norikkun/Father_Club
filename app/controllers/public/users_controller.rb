@@ -13,10 +13,10 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      flash[:notice] = "プロフィール内容を更新しました."
+      flash[:notice] = "プロフィールを更新しました."
       redirect_to user_path(@user)
     else
-      flash[:notice] = "プロフィールの更新に失敗しました"
+      flash[:alert] = @user.errors.full_messages.join(", ")
       redirect_to request.referer
     end
   end

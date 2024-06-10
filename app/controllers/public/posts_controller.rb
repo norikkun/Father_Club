@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿に成功しました"
       redirect_to post_path(@post)
     else
-      flash[:notice] = "投稿に失敗しました"
+      flash[:alert] = @post.errors.full_messages.join(", ")
       redirect_to request.referer
     end
   end
@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿を更新しました"
       redirect_to post_path(@post)
     else
-      flash[:notice] = "投稿の更新に失敗しました"
+      flash[:alert] = @post.errors.full_messages.join(", ")
       redirect_to request.referer
     end
   end
