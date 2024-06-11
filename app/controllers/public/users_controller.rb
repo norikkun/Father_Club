@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:posts, :show]
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def edit
     @user = User.find(params[:id])
   end
@@ -46,4 +48,15 @@ private
 
   def user_params
     params.require(:user).permit(:name, :email, :introduction, :user_image)
+  end
+  
+  def is_matching_login_user
+    begin
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to user_path(current_user)
+      end
+    rescue ActiveRecord::RecordNotFound
+      redirect_to user_path(current_user)
+    end
   end
