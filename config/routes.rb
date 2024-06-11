@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resource :favorites , only: [:index, :create, :destroy]
     end
     resources :relationships , only: [:create, :destroy]
-    get 'searches' => 'searches#search'
+    get 'search' => 'searches#search'
     get "users" => redirect("/users/sign_up")
   end
   
@@ -33,6 +33,6 @@ Rails.application.routes.draw do
     resources :users , only: [:edit, :index, :show, :update]
     resources :posts , only: [:show, :update, :destroy, :index]
     resources :comment , only: [:destroy]
-    get 'searches' => 'searches#search'
+    get 'search' => 'searches#search'
   end
 end

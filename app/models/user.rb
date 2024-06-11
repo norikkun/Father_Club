@@ -16,8 +16,13 @@ class User < ApplicationRecord
   end
 
   has_many :posts, dependent: :destroy
+  
+  # 検索方法分岐
+  def self.looks(search, word)
+    @user = User.where("name LIKE?","%#{word}%")
+  end
 
-  validates :name, presence: true, uniqueness: true, length: { in: 2..10 }  
-   validates :password, presence: true, length: { minimum: 6 }, if: -> { password.present? }
-   validates :password_confirmation, presence: true, length: { minimum: 6 }, if: -> { password.present? }
+    validates :name, presence: true, uniqueness: true, length: { in: 2..10 }  
+    validates :password, presence: true, length: { minimum: 6 }, if: -> { password.present? }
+    validates :password_confirmation, presence: true, length: { minimum: 6 }, if: -> { password.present? }
 end
