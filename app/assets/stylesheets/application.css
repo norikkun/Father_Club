@@ -27,6 +27,6 @@ header.hidden {
 }
 
 /*showページの改行機能*/
-.introduction, .body {
+.new_line, .body {
   white-space: pre-wrap;
 }

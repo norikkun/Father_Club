@@ -16,6 +16,7 @@ class User < ApplicationRecord
   end
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   # 検索方法分岐
   def self.looks(search, word)
