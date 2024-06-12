@@ -56,6 +56,7 @@ private
     params.require(:post).permit(:user_id, :title, :body, :post_image)
   end
   
+  # ログイン時の他のユーザーのアクセス制限
   def is_matching_login_user
     begin
       post = Post.find(params[:id])
