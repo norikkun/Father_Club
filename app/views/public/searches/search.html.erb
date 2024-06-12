@@ -1,0 +1,30 @@
+<%= render 'layouts/search' %>
+<div class="container text-center">
+  <h2>検索結果</h2>
+    <!--検索対象モデルがUserの時 -->
+    <% if @range == "ユーザー" %>
+    <div class="row justify-content-center">
+      <div>
+        <table class="table table-hover text-left">
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= link_to user_path(user.id) do %>
+                    <%= image_tag user.get_user_image(50, 50), class: "rounded-circle" %>
+                  <% end %>
+                  <%= user.name %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% else %>
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+        <% @posts.each do |post| %>
+            <%= render 'public/posts/posts', post: post%>
+        <% end %>
+    <% end %>
+</div>

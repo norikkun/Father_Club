@@ -1,38 +1,72 @@
-<%= render 'layouts/alert'%>
+<%= render 'layouts/search' %>
+<%= render 'layouts/alert' %>
+
 <div class="container text-center">
   <div>
     <%= link_to user_path(@post.user) do %>
       <%= image_tag @post.user.get_user_image(60, 60), class: "rounded-circle mb-3" %>
     <% end %>
     <%= @post.user.name %>
-    
+    <%= @post.created_at.strftime('%Y/%m/%d') %>
+    <i class="fa-regular fa-comment"> <%= @post.comments.count %></i>
   </div>
+
   <div class="mb-3">
     <% if @post.post_image.attached? %>
       <%= image_tag @post.post_image, style: "max-width: 300px; height: auto;" %>
     <% end %>
   </div>
+
   <div>
     <h4>タイトル</h4>
     <p><%= @post.title %></p>
   </div>
+
   <div>
     <h4>投稿内容</h4>
     <p class="body"><%= @post.body %></p>
   </div>
-  
-  <div class="row">
+
+  <div class="row mb-3">
     <div class="col"></div>
     <% if @post.user == current_user %>
       <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
     <% end %>
     <div class="col-1"></div>
-    
     <% if @post.user == current_user %>
       <%= link_to "削除する", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
     <% end %>
-    
     <div class="col"></div>
   </div>
-  
+
+  <div>
+    <% @comments.each do |comment| %>
+      <div class="mb-3">
+        <div class="border border-primary rounded"style="background-color: white;">
+          <div class="mt-4">
+            <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+            <%= comment.user.name %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div>
+            <p class="new_line mb-3"><%= comment.comment %></p>
+        </div>
+        <div class="mb-3">
+          <% if comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div>
+    <% if user_signed_in? %>
+      <%= form_with model: [@post, @comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', cols: '40', maxlength: 501, placeholder: "コメントをここに" %><br>
+        <%= f.submit "送信する", :class => "btn btn-success mb-3" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -3,6 +3,8 @@
     <%= image_tag post.user.get_user_image(50, 50), class: "rounded-circle mx-auto mb-3" %>
   <% end %>
   <%= post.user.name %>
+  <%= post.created_at.strftime('%Y/%m/%d') %>
+  <i class="fa-regular fa-comment"> <%= post.comments.count %></i>
 </div>
 <%= link_to post_path(post) do %>
   <div class="mb-2">

@@ -20,11 +20,11 @@ Rails.application.routes.draw do
     patch 'users/withdraw' => 'users#withdraw'
     resources :users , only: [:edit, :show, :update]
     resources :posts do
-      resources :comments , only: [:new, :create, :edit, :update, :destroy]
+      resources :comments , only: [:create, :destroy]
       resource :favorites , only: [:index, :create, :destroy]
     end
     resources :relationships , only: [:create, :destroy]
-    get 'searches' => 'searches#search'
+    get 'search' => 'searches#search'
     get "users" => redirect("/users/sign_up")
   end
   
@@ -33,6 +33,6 @@ Rails.application.routes.draw do
     resources :users , only: [:edit, :index, :show, :update]
     resources :posts , only: [:show, :update, :destroy, :index]
     resources :comment , only: [:destroy]
-    get 'searches' => 'searches#search'
+    get 'search' => 'searches#search'
   end
 end
