@@ -1,10 +1,5 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
-  def show
-  end
-
-  def update
-  end
 
   def destroy
     post = Post.find(params[:id])
@@ -13,7 +8,4 @@ class Admin::PostsController < ApplicationController
     redirect_to posts_path
   end
   
-  def index
-    
-  end
 end

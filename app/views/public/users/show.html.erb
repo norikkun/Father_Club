@@ -13,8 +13,8 @@
     <% end %>
   </div>
   <div>
-    <% unless @user.guest_user? %>
-        <%= link_to "編集する",edit_user_path(@user),class: "btn btn-success fas fa-user-cog mb-5 edit_user_#{@user.id}" %>
+    <% if @user == current_user%>
+      <%= link_to "編集する", edit_user_path(@user), class:"btn btn-success fas fa-user-cog mb-5" %>
     <% end %>
   </div>
   <div>

@@ -52,7 +52,9 @@
             <p class="new_line mb-3"><%= comment.comment %></p>
         </div>
         <div class="mb-3">
-          <% if comment.user == current_user %>
+          <% if admin_signed_in? %>
+            <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
+          <% elsif comment.user == current_user %>
             <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
           <% end %>
         </div>
