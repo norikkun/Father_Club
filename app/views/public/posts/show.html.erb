@@ -27,16 +27,16 @@
     <p class="body"><%= @post.body %></p>
   </div>
 
-  <div class="row mb-3">
-    <div class="col"></div>
-    <% if @post.user == current_user %>
-      <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
-    <% end %>
-    <div class="col-1"></div>
-    <% if @post.user == current_user %>
-      <%= link_to "削除する", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
-    <% end %>
-    <div class="col"></div>
+  <div class="mb-3">
+    
+    <div>
+      <% if admin_signed_in? %>
+        <%= link_to "削除する", admin_post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
+      <% elsif @post.user == current_user %>
+        <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
+        <%= link_to "削除する", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
+      <% end %>
+    </div>
   </div>
 
   <div>
