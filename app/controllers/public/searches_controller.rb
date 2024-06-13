@@ -4,7 +4,7 @@ class Public::SearchesController < ApplicationController
     @range = params[:range]
 
     if @range == "ユーザー"
-      @users = User.looks(params[:search], params[:word])
+      @users = User.looks(params[:search], params[:word]).order(created_at: :desc)
     else
       @posts = Post.looks(params[:search], params[:word]).order(created_at: :desc)
     end
