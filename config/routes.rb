@@ -37,6 +37,5 @@ Rails.application.routes.draw do
     resources :posts, only: [:update, :destroy,] do
       resources :comments, only: [:destroy]
     end
-    get 'search' => 'searches#search'
   end
 end

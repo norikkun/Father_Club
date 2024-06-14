@@ -33,7 +33,7 @@ class User < ApplicationRecord
   end
   
   # 検索方法分岐
-  def self.looks(search, word)
+  def self.looks(word)
     @user = User.where("name LIKE?","%#{word}%")
   end
 

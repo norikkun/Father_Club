@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-  def self.looks(search, word)
+  def self.looks(word)
     @post = Post.where("title LIKE?","%#{word}%")
   end
 

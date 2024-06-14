@@ -1,12 +1,11 @@
 class Public::SearchesController < ApplicationController
-  
+
   def search
     @range = params[:range]
-
-    if @range == "ユーザー"
-      @users = User.looks(params[:search], params[:word]).order(created_at: :desc)
+    if @range == "user"
+      @users = User.looks(params[:word]).order(created_at: :desc)
     else
-      @posts = Post.looks(params[:search], params[:word]).order(created_at: :desc)
+      @posts = Post.looks(params[:word]).order(created_at: :desc)
     end
   end
 end
