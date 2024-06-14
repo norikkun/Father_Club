@@ -7,21 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Admin.create!(
-email: 'admin@admin',
-password: 'password'
-)
-
-Post.create!(
-  user_id: 1,
-  title: "最初の投稿",
-  body: "これは最初の投稿です。"
-)
-
-Post.create!(
-  user_id: 1,
-  title: "2番目の投稿",
-  body: "これは2番目の投稿です。"
-)
+Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
+admin.password = ENV['ADMIN_PASSWORD']
+end
 
 puts '初期データを追加しました。'
