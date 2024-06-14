@@ -4,6 +4,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_one_attached :user_image
   
@@ -14,12 +17,23 @@ class User < ApplicationRecord
     end
       user_image.variant(resize_to_fill: [width, height]).processed
   end
+  
+  GUEST_USER_EMAIL = "guest@example.com"
 
-  has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64(6) # 6文字以上のパスワードを生成
+      user.password_confirmation = user.password # パスワード確認用に同じパスワードを設定
+      user.name = "guestuser"
+    end
+  end
+  
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
   
   # 検索方法分岐
-  def self.looks(search, word)
+  def self.looks(word)
     @user = User.where("name LIKE?","%#{word}%")
   end
 

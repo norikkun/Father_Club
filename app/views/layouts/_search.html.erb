@@ -1,9 +1,10 @@
 
 <div class="text-right", style="font-size: clamp(10px, 3vw, 16px);;">
+
   <%= form_with url: search_path, local: true, method: :get do |f| %>
-    <%= f.text_field :word %>
-    <%= f.select :range, options_for_select([['ユーザー'], ['投稿']]) %>
-    <%= f.hidden_field :search, value: "部分一致" %>
+    <%= f.search_field :word, value: params[:word], placeholder: "キーワードで絞り込み" %>
+    <%= f.select :range, options_for_select([['ユーザー', :user], ['投稿', :post]], params[:range]) %>
     <%= f.submit "検索", class: "btn btn-primary btn-sm px-3" %>
   <% end %>
+
 </div>
