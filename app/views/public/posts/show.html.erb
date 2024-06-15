@@ -1,2 +1,94 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<%= render 'layouts/search' %>
+<%= render 'layouts/alert' %>
+
+<div class="container text-center">
+  <div>
+    <% if admin_signed_in? %>
+      <%= link_to admin_user_path(@post.user) do %>
+        <%= image_tag @post.user.get_user_image(60, 60), class: "rounded-circle mb-3" %>
+      <% end %>
+    <% else %>
+      <%= link_to user_path(@post.user) do %>
+        <%= image_tag @post.user.get_user_image(60, 60), class: "rounded-circle mb-3" %>
+      <% end %>
+    <% end %>
+    <%= @post.user.name %>
+    <%= @post.created_at.strftime('%Y/%m/%d') %>
+    <i class="fa-regular fa-comment"> <%= @post.comments.count %></i>
+  </div>
+
+  <div class="mb-3">
+    <% if @post.post_image.attached? %>
+      <%= image_tag @post.post_image, style: "width:100%;max-width:350px;" %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4>タイトル</h4>
+    <p><%= @post.title %></p>
+  </div>
+
+  <div>
+    <h4>投稿内容</h4>
+    <p class="body"><%= @post.body %></p>
+  </div>
+
+  <div class="mb-3">
+
+    <div>
+      <% if admin_signed_in? %>
+        <%= link_to "削除する", admin_post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
+      <% elsif @post.user == current_user %>
+        <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
+        <%= link_to "削除する", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
+      <div>
+        <% @comments.each do |comment| %>
+          <div class="mb-3">
+            <div class="d-flex border border-primary rounded"style="background-color: white;">
+              <div class="m-2">
+                <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+              </div>
+              <div class="w-100 m-2">
+                <div class="d-flex justify-content-between">
+                  <span><%= comment.user.name %></span>
+                  <span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+                </div>
+                <div class="mt-2 d-flex">
+                  <p class="new_line mb-3 text-left"><%= comment.comment %></p>
+                </div>
+                <div class="mr-1 d-flex justify-content-end">
+                  <% if admin_signed_in? %>
+                    <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
+                  <% elsif comment.user == current_user %>
+                    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-4">
+        <% if user_signed_in? %>
+          <div class="border-top my-4"></div>
+          <h3>コメント</h3>
+          <%= form_with model: [@post, @comment] do |f| %>
+            <%= f.text_area :comment, rows: '5', maxlength: 501, placeholder: "コメントをここに", class: "form-control" %><br>
+
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <%= f.submit "送信する", :class => "btn btn-success btn-block mb-3" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
