@@ -8,7 +8,7 @@
 
 
 Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
-admin.password = ENV['ADMIN_PASSWORD']
+  admin.password = ENV['ADMIN_PASSWORD']
 end
 
 puts '初期データを追加しました。'
