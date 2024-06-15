@@ -2,32 +2,7 @@
 <%= render 'layouts/alert' %>
 
 <div class="container text-center">
-  <div>
-    <% if admin_signed_in? %>
-      <%= link_to admin_user_path(@post.user) do %>
-        <%= image_tag @post.user.get_user_image(60, 60), class: "rounded-circle mb-3" %>
-      <% end %>
-    <% else %>
-      <%= link_to user_path(@post.user) do %>
-        <%= image_tag @post.user.get_user_image(60, 60), class: "rounded-circle mb-3" %>
-      <% end %>
-    <% end %>
-    <%= @post.user.name %>
-    <%= @post.created_at.strftime('%Y/%m/%d') %>
-    <i class="fa-regular fa-comment"> <%= @post.comments.count %></i>
-  </div>
-
-  <div class="mb-3">
-    <% if @post.post_image.attached? %>
-      <%= image_tag @post.post_image, style: "width:100%;max-width:350px;" %>
-    <% end %>
-  </div>
-
-  <div>
-    <h4>タイトル</h4>
-    <p><%= @post.title %></p>
-  </div>
-
+  <%= render 'public/posts/posts', post: @post %>
   <div>
     <h4>投稿内容</h4>
     <p class="body"><%= @post.body %></p>

@@ -78,13 +78,18 @@
               <% elsif user_signed_in? %>
               
                 <li class="mx-3">
+                  <%= link_to user_favorites_path(current_user.id) do %>
+                    <i class="fa-solid fa-heart" style="color: #ffffff;"> お気に入り</i>
+                  <% end %>
+                </li>
+                <li class="mx-3">
                   <%= link_to posts_path do %>
                     <i class="fa-solid fa-house" style="color: white;"> 一覧</i>
                   <% end %>
                 </li>
                 <li class="mx-3">
                   <%= link_to new_post_path do %>
-                    <i class="fa-solid fa-plus" style="color: white;"> 投稿</i>
+                    <i class="fa-solid fa-plus" style="color: white;"> 新規投稿</i>
                   <% end %>
                 </li>
                 <% else %>
