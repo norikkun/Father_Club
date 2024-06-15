@@ -3,6 +3,12 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  
+  def favorited_by?(user)
+   return false unless user
+   favorites.exists?(user_id: user.id)
+  end
 
   def self.looks(word)
     @post = Post.where("title LIKE?","%#{word}%")

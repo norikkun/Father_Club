@@ -2,7 +2,7 @@
 <%= render 'layouts/alert'%>
 <div class="container text-center">
   <% @posts.each do |post| %>
-    <%= render 'posts', post: post%>
+    <%= render 'public/posts/posts', post: post %>
     <div class="border-top my-4"></div>
   <% end %>
 </div>

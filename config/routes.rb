@@ -21,10 +21,12 @@ Rails.application.routes.draw do
     get 'users/:user_id/followed' => 'users#followed'
     get 'users/confirm' => 'users#confirm'
     patch 'users/withdraw' => 'users#withdraw'
-    resources :users, only: [:edit, :show, :update]
+    resources :users, only: [:edit, :show, :update] do
+      get :favorites 
+    end
     resources :posts do
       resources :comments, only: [:create, :destroy]
-      resource :favorites, only: [:index, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :relationships, only: [:create, :destroy]
     get 'search' => 'searches#search'
