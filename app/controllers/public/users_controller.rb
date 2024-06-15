@@ -23,6 +23,12 @@ class Public::UsersController < ApplicationController
       redirect_to request.referer
     end
   end
+  
+  def favorites
+    @user = User.find(params[:user_id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+end
 
   def follower
   end
