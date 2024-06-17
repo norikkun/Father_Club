@@ -10,7 +10,7 @@
   <% end %>
   <%= post.user.name %>
   <%= post.created_at.strftime('%Y/%m/%d') %>
-  <i class="fa-regular fa-comment"> <%= post.comments.count %></i>
+  <i class="fa-regular fa-comment"> <%= post.comments.count %></i><br>
   <p id="favorite_btn_<%= post.id %>">
     <%= render "public/favorites/btn", post: post %>
   </p>

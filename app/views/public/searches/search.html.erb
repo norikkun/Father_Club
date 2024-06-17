@@ -52,6 +52,9 @@
                   <td style="line-height: 50px;">
                     <%= link_to user.name, user_path(user.id) %>
                   </td>
+                  <td>
+                    <%= render "public/relationships/follow", user: user %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
