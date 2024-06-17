@@ -16,7 +16,7 @@
   </p>
 </div>
 
-<% if controller_name == 'posts' && action_name == 'index' %>
+<% if controller_name != 'posts' || action_name != 'show' %>
   <%= link_to post_path(post) do %>
     <div class="mb-2">
       <% if post.post_image.attached? %>
