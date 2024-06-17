@@ -12,6 +12,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.includes(:user).find(params[:id])
+    @user = @post.user
     @comment = Comment.new
     @comments = @post.comments.order(created_at: :desc)
   end
