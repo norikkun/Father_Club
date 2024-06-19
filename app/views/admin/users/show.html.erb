@@ -6,6 +6,15 @@
   <div>
     <h2 class="col-auto mx-auto mb-4"><%= @user.name %></h2>
     <p class="new_line mb-3"><%= @user.introduction%></p>
+    <div>
+      <%= link_to user_followings_path(@user) do %>
+        <p>フォロー数: <%= @user.followings.count %></p>
+      <% end %>
+      
+      <%= link_to user_followers_path(@user) do %>
+        <p>フォロワー数: <%= @user.followers.count %></p>
+      <% end %>
+    </div>
       <h3>メールアドレス</h3>
       <h4 class="mb-3"><%= @user.email %></h4>
   </div>
