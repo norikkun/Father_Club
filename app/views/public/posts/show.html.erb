@@ -1,11 +1,15 @@
 <%= render 'layouts/search' %>
-<%= render 'layouts/alert' %>
-
 <div class="container text-center">
-  <%= render 'public/posts/posts', post: @post %>
+  <div>
+    <%= render 'public/posts/posts', post: @post %>
+  </div>
   <div>
     <h4>投稿内容</h4>
     <p class="body"><%= @post.body %></p>
+  </div>
+  
+  <div>
+    <%= render "public/relationships/follow", user: @user %>
   </div>
 
   <div class="mb-3">

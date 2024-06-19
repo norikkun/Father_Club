@@ -22,19 +22,20 @@ Rails.application.routes.draw do
     get 'users/confirm' => 'users#confirm'
     patch 'users/withdraw' => 'users#withdraw'
     resources :users, only: [:edit, :show, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+  	  get "followers" => "relationships#followers", as: "followers"
       get :favorites 
     end
     resources :posts do
       resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-    resources :relationships, only: [:create, :destroy]
     get 'search' => 'searches#search'
     get "users" => redirect("/users/sign_up")
   end
   
   namespace :admin do
-    get '/' => 'homes#top'
     resources :users, only: [:edit, :index, :show, :update]
     resources :posts, only: [:update, :destroy,] do
       resources :comments, only: [:destroy]
