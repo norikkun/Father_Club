@@ -2,18 +2,22 @@ class Public::RelationshipsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   
   def create
-    user = User.find(params[:user_id])
-    if current_user.follow(user)
-      redirect_to request.referer, notice: "フォローしました"
+    @user = User.find(params[:user_id])
+    if current_user.follow(@user)
+      respond_to do |format|
+        format.js   # create.js.erb を呼び出す
+      end
     else
       redirect_to request.referer, alert: "フォローできませんでした"
     end
   end
   
   def destroy
-    user = User.find(params[:user_id])
-    if current_user.unfollow(user)
-      redirect_to request.referer, notice: "フォローを解除しました"
+    @user = User.find(params[:user_id])
+    if current_user.unfollow(@user)
+      respond_to do |format|
+        format.js   # destroy.js.erb を呼び出す
+      end
     else
       redirect_to request.referer, alert: "フォローを解除できませんでした"
     end

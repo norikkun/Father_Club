@@ -1,11 +1,11 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
-  
+
   def new
     @post = Post.new
   end
-  
+
   def index
     @posts = Post.includes(:user).order(created_at: :desc)
   end
@@ -52,11 +52,11 @@ class Public::PostsController < ApplicationController
   end
 
 private
-  
+
   def post_params
     params.require(:post).permit(:user_id, :title, :body, :post_image)
   end
-  
+
   # ログイン時の他のユーザーのアクセス制限
   def is_matching_login_user
     begin
