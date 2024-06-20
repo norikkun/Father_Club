@@ -1,6 +1,6 @@
 class Public::RelationshipsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
-  
+
   def create
     @user = User.find(params[:user_id])
     if current_user.follow(@user)
@@ -11,7 +11,7 @@ class Public::RelationshipsController < ApplicationController
       redirect_to request.referer, alert: "フォローできませんでした"
     end
   end
-  
+
   def destroy
     @user = User.find(params[:user_id])
     if current_user.unfollow(@user)
@@ -22,14 +22,14 @@ class Public::RelationshipsController < ApplicationController
       redirect_to request.referer, alert: "フォローを解除できませんでした"
     end
   end
-  
+
   def followings
     user = User.find(params[:user_id])
     @users = user.followings
     # 以下はビューでの表示例
     # render 'followings'
   end
-  
+
   def followers
     user = User.find(params[:user_id])
     @users = user.followers
