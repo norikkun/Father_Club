@@ -6,13 +6,13 @@
     <h2 class="col-auto mx-auto mb-4"><%= @user.name %></h2>
     <p class="new_line mb-3"><%= @user.introduction %></p>
     
-    <div>
+    <div class="mb-3" id="follow-count">
       <%= link_to user_followings_path(@user) do %>
-        <p>フォロー数: <%= @user.followings.count %></p>
+        フォロー: <span id="following-count"><%= @user.followings.count %></span><br>
       <% end %>
       
       <%= link_to user_followers_path(@user) do %>
-        <p>フォロワー数: <%= @user.followers.count %></p>
+        フォロワー: <span id="follower-count"><%= @user.followers.count %></span>
       <% end %>
     </div>
   
@@ -23,7 +23,7 @@
     
   </div>
   
-  <div>
+  <div class="mb-3">
     <%= render "public/relationships/follow", user: @user %>
   </div>
   
