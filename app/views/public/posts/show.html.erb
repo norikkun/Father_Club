@@ -7,7 +7,7 @@
     <h4>投稿内容</h4>
     <p class="body"><%= @post.body %></p>
   </div>
-  
+
   <div>
     <%= render "public/relationships/follow", user: @user %>
   </div>
@@ -54,6 +54,7 @@
         <% end %>
       </div>
       <div class="mt-4">
+        <%= paginate @comments %>
         <% if user_signed_in? %>
           <div class="border-top my-4"></div>
           <h3>コメント</h3>

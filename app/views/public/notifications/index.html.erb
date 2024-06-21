@@ -1,0 +1,15 @@
+<div class="container text-center">
+
+  <h4>通知</h4>
+  <% if @notifications.present? %>
+    <% @notifications.each do |notification| %>
+      <div class="mb-3">
+        <%= render "#{notification.action_type}", notification: notification %>
+      </div>
+    <% end %>
+    <%= paginate @notifications %>
+    <%= link_to "全削除", destroy_all_notifications_path, method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    通知はありません
+  <% end %>
+</div>

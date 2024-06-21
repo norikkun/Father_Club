@@ -10,8 +10,8 @@ header.hidden {
     transform: translateY(-80px);
 }
 
-.img-fluid { 
-  max-height: 80px; /* 画像の縦方向の最大高さを80pxに設定 */ 
+.img-fluid {
+  max-height: 80px; /* 画像の縦方向の最大高さを80pxに設定 */
 }
 
 @media (max-width: 550px) {
@@ -29,4 +29,22 @@ header.hidden {
 /*showページの改行機能*/
 .new_line, .body {
   white-space: pre-wrap;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+.pagination {
+  justify-content: center;
 }
