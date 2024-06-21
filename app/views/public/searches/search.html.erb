@@ -63,6 +63,7 @@
       <% end %>
       
     </div>
+    <%= paginate @users %>
   <% else %>
     <!-- 検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
     <% @posts.each do |post| %>
