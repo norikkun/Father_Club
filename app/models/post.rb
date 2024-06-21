@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   
   def favorited_by?(user)
    return false unless user

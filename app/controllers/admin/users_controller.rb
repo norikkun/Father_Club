@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

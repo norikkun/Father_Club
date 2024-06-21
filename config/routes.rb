@@ -31,6 +31,11 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    resources :notifications, only: [:index] do
+      collection do
+        delete 'destroy_all', to: 'notifications#destroy_all'
+      end
+    end
     get 'search' => 'searches#search'
     get "users" => redirect("/users/sign_up")
   end

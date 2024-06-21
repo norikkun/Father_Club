@@ -60,37 +60,47 @@
     <footer class="footer fixed-bottom" style="background-color: #B3ECFA;">
       <div class="container mt-3">
         <nav class="row">
-          <div class="col">
+          <div class="col px-0">
             <ul class="d-flex justify-content-center list-unstyled">
               <% if admin_signed_in? %>
-              
+
                 <li class="mx-3">
                   <%= link_to posts_path do %>
                     <i class="fa-solid fa-house" style="color: white;"> 一覧</i>
                   <% end %>
                 </li>
-                
+
                 <li class="mx-3">
                   <%= link_to admin_users_path do %>
                     <i class="fa-solid fa-plus" style="color: white;"> ユーザー一覧</i>
                   <% end %>
                 </li>
-                
+
               <% elsif user_signed_in? %>
-              
+
                 <li class="mx-3">
                   <%= link_to user_favorites_path(current_user.id) do %>
-                    <i class="fa-solid fa-heart" style="color: #ffffff;"> お気に入り</i>
+                    <i class="fa-solid fa-heart" style="color: #ffffff; font-size: clamp(11px, 2vw, 15px);;"> お気に入り</i>
                   <% end %>
                 </li>
                 <li class="mx-3">
                   <%= link_to posts_path do %>
-                    <i class="fa-solid fa-house" style="color: white;"> 一覧</i>
+                    <i class="fa-solid fa-house" style="color: white; font-size: clamp(11px, 2vw, 15px);;"> 一覧</i>
                   <% end %>
                 </li>
                 <li class="mx-3">
                   <%= link_to new_post_path do %>
-                    <i class="fa-solid fa-plus" style="color: white;"> 新規投稿</i>
+                    <i class="fa-solid fa-plus" style="color: white; font-size: clamp(11px, 2vw, 15px);;"> 新規投稿</i>
+                  <% end %>
+                </li>
+                <li class="mx-3 ">
+                  <%= link_to notifications_path do %>
+                    <i class="fa-sharp fa-solid fa-bell" style="color: white; font-size: clamp(11px, 2vw, 15px);;">
+                      通知一覧
+                      <% if @unread_notifications_count > 0 %>
+                        <span class="badge badge-pill badge-danger"><%= @unread_notifications_count %></span>
+                      <% end %>
+                    </i>
                   <% end %>
                 </li>
                 <% else %>

@@ -7,7 +7,7 @@
     <h4>投稿内容</h4>
     <p class="body"><%= @post.body %></p>
   </div>
-  
+
   <div>
     <%= render "public/relationships/follow", user: @user %>
   </div>
@@ -31,7 +31,15 @@
           <div class="mb-3">
             <div class="d-flex border border-primary rounded"style="background-color: white;">
               <div class="m-2">
-                <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+                <% if admin_signed_in? %>
+                  <%= link_to admin_user_path(comment.user) do %>
+                    <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+                  <% end %>
+                <% else %>
+                  <%= link_to user_path(comment.user) do %>
+                    <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+                  <% end %>
+                <% end %>
               </div>
               <div class="w-100 m-2">
                 <div class="d-flex justify-content-between">
@@ -54,6 +62,7 @@
         <% end %>
       </div>
       <div class="mt-4">
+        <%= paginate @comments %>
         <% if user_signed_in? %>
           <div class="border-top my-4"></div>
           <h3>コメント</h3>
