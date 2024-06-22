@@ -1,0 +1,9 @@
+<%= form_with model: [post, comment],local: false do |f| %>
+  <%= f.text_area :comment, rows: '5', maxlength: 501, placeholder: "コメントをここに", class: "form-control" %><br>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= f.submit "送信する", :class => "btn btn-success btn-block mb-3" %>
+    </div>
+  </div>
+<% end %>

@@ -3,28 +3,19 @@ class Public::CommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    comment = current_user.comments.new(comment_params)
-    comment.post_id = post.id
-    if comment.save
-      flash[:notice] = "コメントを投稿しました"
-      redirect_to post_path(post)
-    else
-      flash[:alert] = "コメントを入力してください"
-      redirect_to post_path(post)
-    end
+    @comment = current_user.comments.new(comment_params)
+    @comment.post_id = post.id
+    @comment.save
+    @comments = post.comments.order(created_at: :desc).page(params[:page]).per(10)
     
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-
-    if comment.user_id == current_user.id
-      comment.destroy
-      flash[:notice] = "コメントを削除しました"
-      redirect_to post_path(params[:post_id])
-    else
-      redirect_to post_path(params[:post_id])
-    end
+     post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @comment.user_id == current_user.id
+    @comment.destroy
+    @comments = post.comments.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private
