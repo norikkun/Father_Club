@@ -1,0 +1,33 @@
+ <% comments.each do |comment| %>
+  <div class="mb-3">
+    <div class="d-flex border border-primary rounded"style="background-color: white;">
+      <div class="m-2">
+        <% if admin_signed_in? %>
+          <%= link_to admin_user_path(comment.user) do %>
+            <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+          <% end %>
+        <% else %>
+          <%= link_to user_path(comment.user) do %>
+            <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="w-100 m-2">
+        <div class="d-flex justify-content-between">
+          <span><%= comment.user.name %></span>
+          <span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+        </div>
+        <div class="mt-2 d-flex">
+          <p class="new_line mb-3 text-left"><%= comment.comment %></p>
+        </div>
+        <div class="mr-1 d-flex justify-content-end">
+          <% if admin_signed_in? %>
+            <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger", remote:true,  data: {"turbolinks" => false}  %>
+          <% elsif comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger", remote:true,  data: {"turbolinks" => false}  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

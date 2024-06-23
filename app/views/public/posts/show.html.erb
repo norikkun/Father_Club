@@ -23,58 +23,20 @@
       <% end %>
     </div>
   </div>
-
+    
   <div class="row">
     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1">
-      <div>
-        <% @comments.each do |comment| %>
-          <div class="mb-3">
-            <div class="d-flex border border-primary rounded"style="background-color: white;">
-              <div class="m-2">
-                <% if admin_signed_in? %>
-                  <%= link_to admin_user_path(comment.user) do %>
-                    <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
-                  <% end %>
-                <% else %>
-                  <%= link_to user_path(comment.user) do %>
-                    <%= image_tag comment.user.get_user_image(50, 50), class: "rounded-circle" %>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="w-100 m-2">
-                <div class="d-flex justify-content-between">
-                  <span><%= comment.user.name %></span>
-                  <span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
-                </div>
-                <div class="mt-2 d-flex">
-                  <p class="new_line mb-3 text-left"><%= comment.comment %></p>
-                </div>
-                <div class="mr-1 d-flex justify-content-end">
-                  <% if admin_signed_in? %>
-                    <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
-                  <% elsif comment.user == current_user %>
-                    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, data: { confirm: "コメントを削除しますか？？" } , :class => "btn btn-danger" %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+      <div id="post_comments">
+       <%= render "public/comments/comments", comments: @comments %>
       </div>
       <div class="mt-4">
         <%= paginate @comments %>
         <% if user_signed_in? %>
           <div class="border-top my-4"></div>
           <h3>コメント</h3>
-          <%= form_with model: [@post, @comment] do |f| %>
-            <%= f.text_area :comment, rows: '5', maxlength: 501, placeholder: "コメントをここに", class: "form-control" %><br>
-
-            <div class="row">
-              <div class="col-md-6 offset-md-3">
-                <%= f.submit "送信する", :class => "btn btn-success btn-block mb-3" %>
-              </div>
-            </div>
-          <% end %>
+          <div id="comment_form">
+            <%= render "public/comments/form", post: @post, comment: @comment %>
+          </div>
         <% end %>
       </div>
     </div>
