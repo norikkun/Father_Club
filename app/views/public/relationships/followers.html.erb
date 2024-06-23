@@ -1,33 +1,11 @@
 <%= render 'layouts/search' %>
 <div class="container text-center">
+  <h2>フォロワー一覧</h2>
   <div class="row justify-content-center">
-    <div>
-      <h2>フォロワー一覧</h2>
-      <table class="table table-hover text-left">
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td>
-                <% if admin_signed_in? %>
-                  <%= link_to admin_user_path(user.id) do %>
-                    <%= image_tag user.get_user_image(50, 50), class: "rounded-circle" %>
-                  <% end %>
-                <% else %>
-                  <%= link_to user_path(user.id) do %>
-                    <%= image_tag user.get_user_image(50, 50), class: "rounded-circle" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td style="line-height: 50px;">
-                <%= link_to user.name, user_path(user.id) %>
-              </td>
-              <td>
-                <%= render "public/relationships/follow", user: user %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% if admin_signed_in? %>
+      <%= render "admin/users/index", users: @users %>
+    <% else %>
+      <%= render "public/users/index", users: @users %>
+    <% end %>
   </div>
 </div>
