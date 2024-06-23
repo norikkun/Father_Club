@@ -26,8 +26,8 @@ class Public::UsersController < ApplicationController
   
   def favorites
     @user = User.find(params[:user_id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    favorite_ids = Favorite.where(user_id: @user.id).order(created_at: :desc).pluck(:post_id)
+    @favorite_posts = Post.find(favorite_ids).sort_by { |post| favorite_ids.index(post.id) }
   end
 
   def follower
