@@ -1,5 +1,4 @@
 class Public::SearchesController < ApplicationController
-
   def search
     @range = params[:range]
     if @range == "user"

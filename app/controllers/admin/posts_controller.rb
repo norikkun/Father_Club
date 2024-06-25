@@ -7,5 +7,4 @@ class Admin::PostsController < ApplicationController
     flash[:notice] = "投稿を削除しました"
     redirect_to posts_path
   end
-  
 end

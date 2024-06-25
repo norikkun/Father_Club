@@ -52,20 +52,17 @@ class Public::PostsController < ApplicationController
   end
 
 private
-
   def post_params
     params.require(:post).permit(:user_id, :title, :body, :post_image)
   end
 
   # ログイン時の他のユーザーのアクセス制限
   def is_matching_login_user
-    begin
-      post = Post.find(params[:id])
-      unless post.user_id == current_user.id
-        redirect_to posts_path
-      end
-    rescue ActiveRecord::RecordNotFound
+    post = Post.find(params[:id])
+    unless post.user_id == current_user.id
       redirect_to posts_path
     end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to posts_path
   end
 end
