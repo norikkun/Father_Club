@@ -1,6 +1,6 @@
 # Father Club
 
-![トップイメージ](app/assets/images/header.)
+![トップイメージ](app/assets/images/header.png)
 ​
 ## サイト概要
 ### サイトテーマ
