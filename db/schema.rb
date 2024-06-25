@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_22_055336) do
+ActiveRecord::Schema.define(version: 2024_06_25_055148) do
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 2024_06_22_055336) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "read_at"
+    t.integer "post_id"
     t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
