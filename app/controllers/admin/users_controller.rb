@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -20,10 +20,9 @@ class Admin::UsersController < ApplicationController
     flash[:notice] = "プロフィールを変更しました"
     redirect_to admin_user_path(@user)
   end
-  
+
   private
-  
-  def user_params
-  params.require(:user).permit(:is_active)
-  end
+    def user_params
+      params.require(:user).permit(:is_active)
+    end
 end

@@ -8,6 +8,6 @@ class Public::NotificationsController < ApplicationController
 
   def destroy_all
     current_user.notifications.destroy_all
-    redirect_to notifications_path, notice: '全ての通知が削除されました。'
+    redirect_to notifications_path, notice: "全ての通知が削除されました。"
   end
 end
