@@ -17,7 +17,9 @@
 - 子育て中に、解決法がわからずに、先輩パパさんの実践方法や考え方を知りたい時
 
 ## 設計書
-後ほど作成
+- [UI-flow,ER図](https://drive.google.com/file/d/1yhI1Cz1Dxqk7ocONZlWHiIIOW7gTRh6_/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/194ozT2wQJYQ3JvutaweI1TVoW4EdphTo34fAgNyaXeU/edit?gid=0#gid=0)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/13SGRYfuxnXA5jTYGzHnbhm1Zjurrs9bQxWanxiRbN1g/edit?gid=549108681#gid=549108681)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -25,3 +27,12 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- 
+## 使用素材
+- フリーイラスト素材として以下を使用
+  - [ICOOON MONO](https://icooon-mono.com/)
+  - [hatchful](https://www.shopify.com/jp/tools/logo-maker)
+  - [Font Awesome](https://fontawesome.com/)
+
+著作権を考慮し、架空のデータを扱う予定です。
+なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。

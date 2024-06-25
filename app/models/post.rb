@@ -5,14 +5,14 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  
+
   def favorited_by?(user)
-   return false unless user
-   favorites.exists?(user_id: user.id)
+    return false unless user
+    favorites.exists?(user_id: user.id)
   end
 
   def self.looks(word)
-    @post = Post.where("title LIKE?","%#{word}%")
+    @post = Post.where("title LIKE?", "%#{word}%")
   end
 
   validates :title, presence: true, length: { in: 2..30 }

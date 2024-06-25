@@ -1,0 +1,21 @@
+<div>
+  <table class="table table-hover text-left">
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user_path(user.id) do %>
+              <%= image_tag user.get_user_image(50, 50), class: "rounded-circle" %>
+            <% end %>
+          </td>
+          <td style="line-height: 50px;">
+            <%= link_to user.name, user_path(user.id) %>
+          </td>
+          <td>
+            <%= render "public/relationships/follow", user: user %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

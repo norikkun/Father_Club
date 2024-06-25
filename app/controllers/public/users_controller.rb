@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:posts, :show]
   before_action :is_matching_login_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -23,11 +23,11 @@ class Public::UsersController < ApplicationController
       redirect_to request.referer
     end
   end
-  
+
   def favorites
     @user = User.find(params[:user_id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    favorite_ids = Favorite.where(user_id: @user.id).order(created_at: :desc).pluck(:post_id)
+    @favorite_posts = Post.find(favorite_ids).sort_by { |post| favorite_ids.index(post.id) }
   end
 
   def follower
@@ -51,29 +51,26 @@ class Public::UsersController < ApplicationController
   end
 
 private
-
   def user_params
     params.require(:user).permit(:name, :email, :introduction, :user_image)
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーは編集画面へ遷移できません。"
+      redirect_to user_path(current_user), notice: "ゲストユーザーは編集画面へ遷移できません。"
     end
-  end  
-  
+  end
+
   # ログイン時の他のユーザーのアクセス制限
   def is_matching_login_user
-    begin
-      user = User.find(params[:id])
-      unless user.id == current_user.id
-      flash[:notice] = "他のユーザーの編集は出来ません"
-      redirect_to user_path(current_user)
-      end
-    rescue ActiveRecord::RecordNotFound
+    user = User.find(params[:id])
+    unless user.id == current_user.id
       flash[:notice] = "他のユーザーの編集は出来ません"
       redirect_to user_path(current_user)
     end
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "他のユーザーの編集は出来ません"
+    redirect_to user_path(current_user)
   end
 end
