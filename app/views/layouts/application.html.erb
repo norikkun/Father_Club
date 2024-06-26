@@ -59,9 +59,7 @@
       </div>
     </header>
     <main class="mb-auto" style="margin-top: 100px; padding-bottom: 60px;">
-      <% unless controller_name == 'posts' && action_name == 'show' %>
-        <%= render 'layouts/alert' %>
-      <% end %>
+      <%= render 'layouts/alert' %>
       <%= yield %>
     </main>
 
