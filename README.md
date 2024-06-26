@@ -25,11 +25,11 @@
 
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- 言語：HTML,CSS,JavaScript,Ruby,SQL,Bootstrap
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
+- JSライブラリ：jQuery,Ajax
 - IDE：Cloud9
--
+  
 ## 使用素材
 - フリーイラスト素材として以下を使用
   - [ICOOON MONO](https://icooon-mono.com/)
