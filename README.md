@@ -19,15 +19,20 @@
 - 子育て中に、解決法がわからずに、先輩パパさんの実践方法や考え方を知りたい時
 
 ## 設計書
-- [UI-flow,ER図](https://drive.google.com/file/d/1yhI1Cz1Dxqk7ocONZlWHiIIOW7gTRh6_/view?usp=sharing)
+- [画面設計](https://drive.google.com/file/d/1yhI1Cz1Dxqk7ocONZlWHiIIOW7gTRh6_/view?usp=sharing)
+ ![画面設計](https://github.com/norikkun/Father_Club/assets/161901725/39ae1d3f-493a-4bb0-8e20-b2c37a6ba466)
+- [画面設計,ER図](https://drive.google.com/file/d/1yhI1Cz1Dxqk7ocONZlWHiIIOW7gTRh6_/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/194ozT2wQJYQ3JvutaweI1TVoW4EdphTo34fAgNyaXeU/edit?gid=0#gid=0)
 - [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/13SGRYfuxnXA5jTYGzHnbhm1Zjurrs9bQxWanxiRbN1g/edit?gid=549108681#gid=549108681)
 
+## サイトURL
+[こちら](https://fatherclub.net/)
+
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL,Bootstrap
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery,Ajax
+- JSライブラリ：jQuery
 - IDE：Cloud9
   
 ## 使用素材
