@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = post.id
     unless @comment.save
-     flash[:notice] = "コメントを入力してください"
+     flash[:comment] = "コメントを入力してください"
      render 'error'
     end
     @comments = post.comments.order(created_at: :desc).page(params[:page]).per(10)
