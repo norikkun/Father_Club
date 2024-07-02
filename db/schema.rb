@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_25_055148) do
+ActiveRecord::Schema.define(version: 2024_07_02_144726) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2024_06_25_055148) do
     t.bigint "user_id", null: false
     t.string "title", null: false
     t.text "body", null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
   create_table "relationships", force: :cascade do |t|
