@@ -2,6 +2,5 @@
 <div class="container text-center">
   <% @posts.each do |post| %>
     <%= render 'public/posts/posts', post: post, user: current_user%>
-    <div class="border-top my-4"></div>
   <% end %>
 </div>

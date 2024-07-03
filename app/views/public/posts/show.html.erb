@@ -16,10 +16,10 @@
 
     <div>
       <% if admin_signed_in? %>
-        <%= link_to "削除する", admin_post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
+        <%= link_to "削除", admin_post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
       <% elsif @post.user == current_user %>
-        <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
-        <%= link_to "削除する", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
+        <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
+        <%= link_to "削除", post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: "本当に消しますか？" } %>
       <% end %>
     </div>
   </div>
@@ -34,6 +34,7 @@
         <% if user_signed_in? %>
           <div class="border-top my-4"></div>
           <h3>コメント</h3>
+          <div id ="comments-error"></div>
           <div id="comment_form">
             <%= render "public/comments/form", post: @post, comment: @comment %>
           </div>

@@ -1,7 +1,7 @@
 class Notification < ApplicationRecord
   belongs_to :subject, polymorphic: true
   belongs_to :user
-  belongs_to :post
+  belongs_to :post, optional: true
 
   scope :unread, -> { where(read_at: nil) }
 
