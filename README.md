@@ -31,9 +31,10 @@
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
+- フレームワーク：Ruby on Rails,Bootstrap
+- JSライブラリ：jQuery,Ajax
 - IDE：Cloud9
+- 外部API: Natural Language API
   
 ## 使用素材
 - フリーイラスト素材として以下を使用
